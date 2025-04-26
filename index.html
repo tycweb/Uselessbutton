@@ -10,7 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <style>
-    /* Initial background gradient */
+    /*  changing background */
     body {
       margin: 0;
       padding: 0;
@@ -34,7 +34,7 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Loading Screen Style */
+    /* Loading Screen */
     #loading {
       position: absolute;
       top: 50%;
@@ -113,7 +113,7 @@
       to { transform: translateY(110vh); }
     }
 
-    /* Virus Effect: Glitchy flicker effect */
+    /* Virus Effect */
     .virus-mode {
       animation: glitchBackground 0.3s infinite;
       background: rgba(255, 0, 0, 0.5) url('https://www.transparenttextures.com/patterns/asfalt-dark.png') repeat;
@@ -138,14 +138,14 @@
   <button id="useless-btn">Useless Button</button>
 
   <script>
-    let virusMode = false; // Flag to ensure the virus only activates once
+    let virusMode = false; // safety
     const title = document.getElementById('title');
     const button = document.getElementById('useless-btn');
     const loading = document.getElementById('loading');
     const body = document.body;
 
     window.onload = () => {
-      // Simulate loading delay (3 seconds before showing the button)
+      // 3 second cooldown☠️
       setTimeout(() => {
         loading.style.display = 'none';
         title.style.display = 'block';
@@ -159,13 +159,13 @@
       if (virusMode) return;
       virusMode = true;
 
-      // Activate virus mode - glitch effect, background flicker, and chaos
+      // Activate virus mode bwahahahha
       body.classList.add('virus-mode');
 
       title.innerText = "VIRUS ACTIVATED!";
       title.style.color = "red";
 
-      // Start the chaos (crazy letters, screen shake, SweetAlerts spam)
+      // the war Begin 
       setInterval(spawnRandomLetter, 50);
       setInterval(shakeScreen, 50);
       setInterval(showSweetAlert, 3000);
@@ -249,7 +249,7 @@ function spawnExtraButton() {
   newButton.style.border = '2px solid white';
   newButton.style.borderRadius = '10px';
   newButton.style.cursor = 'pointer';
-  newButton.style.animation = 'pulse 2s infinite'; // reuse your pulse animation!
+  newButton.style.animation = 'pulse 2s infinite'; // animation!
   newButton.style.display = 'block';
   newButton.onclick = () => {
     showSweetAlert();
