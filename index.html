@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Useless Button</title>
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <style>
+    /* Initial background gradient */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(270deg, #ff416c, #ff4b2b, #1e90ff, #00bfff);
+      background-size: 800% 800%;
+      animation: animateBackground 20s ease infinite;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+    }
+
+    @keyframes animateBackground {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Loading Screen Style */
+    #loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      color: #fff;
+      font-weight: bold;
+      display: block;
+      animation: loadingAnimation 3s linear infinite;
+    }
+
+    @keyframes loadingAnimation {
+      0% { opacity: 0; }
+      50% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      animation: popIn 1s ease forwards;
+      display: none;
+    }
+
+    button {
+      padding: 15px 40px;
+      font-size: 1.3rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid #ffffff;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+      display: none;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .letter {
+      position: absolute;
+      font-size: 24px;
+      font-weight: bold;
+      color: lime;
+      animation: wiggle 0.3s infinite, fall linear infinite;
+    }
+
+    @keyframes wiggle {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      50% { transform: rotate(0deg); }
+      75% { transform: rotate(-5deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    @keyframes fall {
+      from { transform: translateY(-100px); }
+      to { transform: translateY(110vh); }
+    }
+
+    /* Virus Effect: Glitchy flicker effect */
+    .virus-mode {
+      animation: glitchBackground 0.3s infinite;
+      background: rgba(255, 0, 0, 0.5) url('https://www.transparenttextures.com/patterns/asfalt-dark.png') repeat;
+    }
+
+    @keyframes glitchBackground {
+      0% { background: linear-gradient(270deg, #ff416c, #ff4b2b, #1e90ff, #00bfff); }
+      25% { background: linear-gradient(270deg, #ff0000, #ff007f, #ff4b2b, #00bfff); }
+      50% { background: linear-gradient(270deg, #ff007f, #ff4b2b, #1e90ff, #ff416c); }
+      75% { background: linear-gradient(270deg, #1e90ff, #ff416c, #ff007f, #ff4b2b); }
+      100% { background: linear-gradient(270deg, #ff416c, #ff4b2b, #1e90ff, #00bfff); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="loading">Loading... Please Wait</div>
+
+  <h1 id="title">Tap the Useless Button</h1>
+
+  <button id="useless-btn">Useless Button</button>
+
+  <script>
+    let virusMode = false; // Flag to ensure the virus only activates once
+    const title = document.getElementById('title');
+    const button = document.getElementById('useless-btn');
+    const loading = document.getElementById('loading');
+    const body = document.body;
+
+    window.onload = () => {
+      // Simulate loading delay (3 seconds before showing the button)
+      setTimeout(() => {
+        loading.style.display = 'none';
+        title.style.display = 'block';
+        button.style.display = 'block';
+      }, 3000); // Loading screen for 3 seconds
+    }
+
+    button.addEventListener('click', activateVirus);
+
+    function activateVirus() {
+      if (virusMode) return;
+      virusMode = true;
+
+      // Activate virus mode - glitch effect, background flicker, and chaos
+      body.classList.add('virus-mode');
+
+      title.innerText = "VIRUS ACTIVATED!";
+      title.style.color = "red";
+
+      // Start the chaos (crazy letters, screen shake, SweetAlerts spam)
+      setInterval(spawnRandomLetter, 50);
+      setInterval(shakeScreen, 50);
+      setInterval(showSweetAlert, 3000);
+      setInterval(showNormalAlert, 5000);
+      setInterval(spawnExtraButton, 2000);
+    }
+
+    function spawnRandomLetter() {
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      const randomChar = chars[Math.floor(Math.random() * chars.length)];
+
+      const letter = document.createElement('div');
+      letter.className = 'letter';
+      letter.innerText = randomChar;
+      letter.style.left = Math.random() * window.innerWidth + 'px';
+      letter.style.top = '-50px';
+      letter.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      letter.style.fontSize = Math.random() * 20 + 24 + 'px';  // Make the letters bigger over time
+
+      document.body.appendChild(letter);
+
+      setTimeout(() => {
+        letter.remove();
+      }, 6000);
+    }
+
+    function shakeScreen() {
+      document.body.style.marginLeft = (Math.random() * 10 - 5) + 'px';
+      document.body.style.marginTop = (Math.random() * 10 - 5) + 'px';
+    }
+
+    function showSweetAlert() {
+      const titles = [
+        '⚠️ DEVICE BREACH ⚠️',
+        '☠️ TROJAN FOUND',
+        '❗ MOBILE ALERT ❗',
+        '⚡ CRITICAL MOBILE ERROR'
+      ];
+      const messages = [
+        'Memory leak detected!',
+        'Unauthorized access detected!',
+        'Mobile overheating!',
+        'Malware spreading rapidly!'
+      ];
+
+      const randomTitle = titles[Math.floor(Math.random() * titles.length)];
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+
+      Swal.fire({
+        title: randomTitle,
+        text: randomMessage,
+        icon: 'error',
+        background: '#8B0000',
+        color: '#fff',
+        confirmButtonColor: '#FF0000'
+      });
+    }
+
+    function showNormalAlert() {
+      const normalMessages = [
+        'Your mobile storage is full!',
+        'Virus is encrypting your photos!',
+        'Critical security alert!',
+        'Battery virus detected!',
+        'Ransomware installing...'
+      ];
+      alert(normalMessages[Math.floor(Math.random() * normalMessages.length)]);
+    }
+
+    function spawnExtraButton() {
+      const newButton = document.createElement('button');
+      newButton.className = 'btn';
+      newButton.innerText = 'tyce!';
+      newButton.style.position = 'fixed';
+      newButton.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+      newButton.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+      newButton.onclick = activateVirus;
+      document.body.appendChild(newButton);
+    }
+  </script>
+
+</body>
+</html>
