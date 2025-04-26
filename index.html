@@ -235,19 +235,29 @@
       alert(normalMessages[Math.floor(Math.random() * normalMessages.length)]);
     }
 
-    function spawnExtraButton() {
+function spawnExtraButton() {
   const newButton = document.createElement('button');
-  newButton.className = 'btn';
-  newButton.innerText = 'tyce!!';
+  newButton.innerText = 'tyce☠️';
   newButton.style.position = 'fixed';
   newButton.style.left = Math.random() * (window.innerWidth - 100) + 'px';
   newButton.style.top = Math.random() * (window.innerHeight - 50) + 'px';
-  newButton.style.zIndex = 9999; // <-- make it on top
-  newButton.style.pointerEvents = "auto"; 
-  newButton.onclick = activateVirus;
+  newButton.style.zIndex = 9999;
+  newButton.style.padding = '10px 20px';
+  newButton.style.fontSize = '16px';
+  newButton.style.backgroundColor = 'red';
+  newButton.style.color = 'white';
+  newButton.style.border = '2px solid white';
+  newButton.style.borderRadius = '10px';
+  newButton.style.cursor = 'pointer';
+  newButton.style.animation = 'pulse 2s infinite'; // reuse your pulse animation!
+  newButton.style.display = 'block';
+  newButton.onclick = () => {
+    showSweetAlert();
+    shakeScreen();
+  };
+
   document.body.appendChild(newButton);
-}
-  </script>
+}  </script>
 
 </body>
 </html>
